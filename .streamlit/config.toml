@@ -1,0 +1,11 @@
+[client]
+showErrorDetails = "none"
+
+[theme]
+base="light"
+primaryColor="#F2612Bff"
+backgroundColor = "ghostWhite"
+secondaryBackgroundColor="#E7EDF9"
+
+[theme.sidebar]
+backgroundColor="#E7EDF9"   
