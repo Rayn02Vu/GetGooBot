@@ -1,4 +1,4 @@
-from flowise import Flowise, PredictionData
+from flowise import Flowise, PredictionData, IMessage
 import streamlit as st
 from streamlit import session_state as state
 import json
@@ -114,7 +114,7 @@ def generate_response(prompt):
             chatflowId=flow_id,
             question=prompt,
             overrideConfig={"sessionId": state.sessionId},
-            streaming=True
+            streaming=True,
         )
     )
     for chunk in completion:
@@ -123,7 +123,7 @@ def generate_response(prompt):
             case "token":
                 yield str(parsed_chunk["data"])
             case "metadata":
-                state.sessionId = parsed_chunk["data"]["sessionId"]
+                state.sessionId = parsed_chunk["data"]["chatMessageId"]
             case "end":
                 state.running = False
                 yield ""
